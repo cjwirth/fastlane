@@ -17,7 +17,7 @@ module Fastlane
         Actions.lane_context[SharedValues::DSYM_ZIP_PATH] = zipped_dsym_path
 
         if params[:all]
-          Actions.sh(%(cd "#{dsym_folder_path}" && zip -r "#{zipped_dsym_path}" "#{dsym_folder_path}"/*.dSYM))
+          Actions.sh(%(cd "#{dsym_folder_path}" && zip -r "#{zipped_dsym_path}" *.dSYM))
         else
           plist = Plist.parse_xml(File.join(archive, 'Info.plist'))
           app_name = Helper.test? ? 'MyApp.app' : File.basename(plist['ApplicationProperties']['ApplicationPath'])
